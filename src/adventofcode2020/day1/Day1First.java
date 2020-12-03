@@ -7,7 +7,7 @@ import src.lib.FileHandler;
 public class Day1First {
     public static void main(String[] args) {
         String[] inputPath = { "day1", "input.txt" };
-        List<String> lines = FileHandler.readByLine(inputPath);
+        List<String> lines = FileHandler.readByLine(2020, inputPath);
 
         int firstNum = 0;
         int secondNum = 0;

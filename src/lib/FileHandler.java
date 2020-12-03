@@ -11,8 +11,8 @@ public class FileHandler {
     private FileHandler() {
     }
 
-    public static List<String> readByLine(String[] pathSegments) {
-        File file = new File("src" + File.separator + "adventofcode2020" + File.separator + String.join(File.separator, pathSegments));
+    public static List<String> readByLine(int year, String[] pathSegments) {
+        File file = new File("src" + File.separator + "adventofcode" + year + File.separator + String.join(File.separator, pathSegments));
         List<String> lines = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(file));) {
             String line = reader.readLine();

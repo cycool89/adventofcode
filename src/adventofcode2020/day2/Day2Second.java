@@ -7,7 +7,7 @@ import src.lib.FileHandler;
 public class Day2Second {
     public static void main(String[] args) {
         String[] inputPath = { "day2", "input.txt" };
-        List<String> lines = FileHandler.readByLine(inputPath);
+        List<String> lines = FileHandler.readByLine(2020, inputPath);
 
         int validLinesCount = 0;
 
