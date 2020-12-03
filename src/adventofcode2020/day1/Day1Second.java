@@ -1,4 +1,4 @@
-package src.adventofcode2020.dayone;
+package src.adventofcode2020.day1;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import src.lib.FileHandler;
 
 public class Day1Second {
     public static void main(String[] args) {
-        String[] inputPath = { "dayone", "input.txt" };
+        String[] inputPath = { "day1", "input.txt" };
         List<String> lines = FileHandler.readByLine(inputPath);
 
         int firstNum = 0;
