@@ -4,7 +4,7 @@ import java.util.List;
 
 import src.lib.FileHandler;
 
-public class Day2First {
+public class Day2Second {
     public static void main(String[] args) {
         String[] inputPath = { "day2", "input.txt" };
         List<String> lines = FileHandler.readByLine(inputPath);
@@ -13,13 +13,13 @@ public class Day2First {
 
         for (String line : lines) {
             String[] data = line.split(":");
-            String minmax = data[0].split(" ")[0];
-            int min = Integer.parseInt(minmax.split("-")[0]);
-            int max = Integer.parseInt(minmax.split("-")[1]);
+            String positions = data[0].split(" ")[0];
+            int pos1 = Integer.parseInt(positions.split("-")[0]);
+            int pos2 = Integer.parseInt(positions.split("-")[1]);
             int neededChar = data[0].split(" ")[1].charAt(0);
 
-            long neededCharCount = data[1].chars().filter(ch -> ch == neededChar).count();
-            if (neededCharCount >= min && neededCharCount <= max) {
+            String password = data[1];
+            if (password.charAt(pos1) == neededChar ^ password.charAt(pos2) == neededChar) {
                 validLinesCount++;
             }
         }
