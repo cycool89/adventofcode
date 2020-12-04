@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Day4Second",
+            "request": "launch",
+            "mainClass": "src.adventofcode2020.day4.Day4Second",
+            "projectName": "adventofcode_b62f3a58"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Day4First",
+            "request": "launch",
+            "mainClass": "src.adventofcode2020.day4.Day4First",
+            "projectName": "adventofcode_b62f3a58"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Day1Second",
             "request": "launch",
             "mainClass": "src.adventofcode2015.day1.Day1Second",
