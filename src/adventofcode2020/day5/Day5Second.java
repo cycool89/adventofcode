@@ -1,6 +1,10 @@
 package src.adventofcode2020.day5;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import src.lib.FileHandler;
 
@@ -36,25 +40,43 @@ public class Day5Second {
         return lowerEnd;
     }
 
+    private static int getSeatId(String boardingPass) {
+        String rows = boardingPass.substring(0, 7);
+        String cols = boardingPass.substring(7);
+
+        int rowIndex = findIndex(rows, MAX_ROW);
+        int colIndex = findIndex(cols, MAX_COL);
+        return rowIndex * 8 + colIndex;
+    }
+
     public static void main(String[] args) {
         String[] inputPath = { "day5", "input.txt" };
         List<String> lines = FileHandler.readByLine(2020, inputPath);
 
-        int maxSeatId = 0;
+        SortedSet<Integer> seatIds = new TreeSet<>();
 
         for (String line : lines) {
-            String rows = line.substring(0, 7);
-            String cols = line.substring(7);
+            int seatId = getSeatId(line);
 
-            int rowIndex = findIndex(rows, MAX_ROW);
-            int colIndex = findIndex(cols, MAX_COL);
-
-            int seatId = rowIndex * 8 + colIndex;
-
-            if (seatId > maxSeatId) maxSeatId = seatId;
+            seatIds.add(seatId);
         }
 
-        System.out.println("Highest seatId on the boarding passes: " + maxSeatId);
+        Iterator<Integer> iterator = seatIds.iterator();
+        int prevSeat = iterator.next();
+        int actSeat = iterator.next();
+        int nextSeat = iterator.next();
 
+        int mySeat = -1;
+        while (iterator.hasNext() && mySeat < 0) {
+            if (nextSeat - prevSeat > 2) {
+                mySeat = actSeat + 1;
+            }
+
+            prevSeat = actSeat;
+            actSeat = nextSeat;
+            nextSeat = iterator.next();
+        }
+
+        System.out.println("My seatIS on the plane is " + mySeat);
     }
 }
