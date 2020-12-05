@@ -77,6 +77,6 @@ public class Day5Second {
             nextSeat = iterator.next();
         }
 
-        System.out.println("My seatIS on the plane is " + mySeat);
+        System.out.println("My seatID on the plane is " + mySeat);
     }
 }
