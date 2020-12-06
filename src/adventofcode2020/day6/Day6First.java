@@ -28,7 +28,7 @@ public class Day6First {
         }
         groupAnswerCounts += uniqueAnswers.size();
 
-        System.out.println("Sum of ansers: " + groupAnswerCounts);
+        System.out.println("Sum of answers: " + groupAnswerCounts);
 
     }
 }
