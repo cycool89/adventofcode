@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Day8First",
+            "request": "launch",
+            "mainClass": "src.adventofcode2020.day8.Day8First",
+            "projectName": "adventofcode_b62f3a58"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Day2Second",
             "request": "launch",
             "mainClass": "src.adventofcode2015.day2.Day2Second",
