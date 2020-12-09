@@ -59,14 +59,10 @@ class HandheldConsole {
         if (actualStep.getInstruction() == Instruction.JMP) {
             actualStep.setInstruction(Instruction.NOP);
             actualStep.setExecuted(!actualStep.hasBeenExecuted());
-            System.out.println("CHNG line " + actualStep.getIndex() + ":\tJMP to NOP" + actualStep.getValue() + "("
-                    + accumulator + ")");
             return true;
         } else if (actualStep.getInstruction() == Instruction.NOP) {
             actualStep.setInstruction(Instruction.JMP);
             actualStep.setExecuted(!actualStep.hasBeenExecuted());
-            System.out.println("CHNG line " + actualStep.getIndex() + ":\tNOP to JMP" + actualStep.getValue() + "("
-                    + accumulator + ")");
             return true;
         }
         return false;
@@ -99,14 +95,6 @@ class HandheldConsole {
         if ((runningDirection > 0 && !actualStep.hasBeenExecuted())
                 || (runningDirection < 0 && actualStep.hasBeenExecuted())) {
 
-            if (runningDirection > 0) {
-                System.out.println("EXEC line " + actualStep.getIndex() + ":\t" + actualStep.getInstruction() + " "
-                        + actualStep.getValue() + "\t(" + accumulator + ")");
-            } else {
-                System.out.println("UNDO line " + actualStep.getIndex() + ":\t" + actualStep.getInstruction() + " "
-                        + actualStep.getValue() + "\t(" + accumulator + ")");
-            }
-
             switch (actualStep.getInstruction()) {
                 case ACC:
                     accumulator += actualStep.getValue() * runningDirection;
@@ -122,10 +110,6 @@ class HandheldConsole {
             }
             actualStep.setExecuted(runningDirection > 0);
         } else {
-            System.out.println("-------------------------------");
-            System.out.println("LOOP line " + actualStep.getIndex() + ":\t" + actualStep.getInstruction() + " "
-                    + actualStep.getValue() + "\t(" + accumulator + ")");
-            System.out.println("-------------------------------");
             nextInstructionIndex = -1;
         }
         return nextInstructionIndex;
