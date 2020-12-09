@@ -1,7 +1,6 @@
 package src.adventofcode2020.day7;
 
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
