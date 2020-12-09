@@ -43,53 +43,66 @@ class HandheldConsole {
             }
 
             instructionIndex = executeProgramStep();
-
-            if (!hasNextStep() && tryToFix) {
-                runningDirection = -1;
-            }
         } while (runningDirection != 0 && hasNextStep());
         stop();
     }
 
     private boolean hasNextStep() {
+        boolean hasNextStep = false;
+
         if (runningDirection > 0) {
-            return instructionIndex >= 0 && instructionIndex < program.size();
+            hasNextStep = instructionIndex >= 0 && instructionIndex < program.size();
+
+            if (!hasNextStep && instructionIndex < program.size() && tryToFix) {
+                runningDirection = -1;
+                stackTrace.pop();
+                hasNextStep = true;
+            }
         } else if (runningDirection < 0) {
-            return !stackTrace.isEmpty();
-        } else {
-            return false;
+            hasNextStep = !stackTrace.isEmpty();
+            if (!hasNextStep) {
+                runningDirection = 0;
+            }
         }
+
+        return hasNextStep;
     }
 
     private int executeProgramStep() {
-        if (runningDirection > 0) {
-            System.out.println("EXECUTE line " + actualStep.getIndex() + ":\t" + actualStep.getInstruction() + " "
-                    + actualStep.getValue() + "\t(" + accumulator + ")");
-        } else {
-            System.out.println("UNDO line " + actualStep.getIndex() + ":\t" + actualStep.getInstruction() + " "
-                    + actualStep.getValue() + "\t(" + accumulator + ")");
-        }
         int nextInstructionIndex = -1;
 
         if ((runningDirection > 0 && !actualStep.hasBeenExecuted())
                 || (runningDirection < 0 && actualStep.hasBeenExecuted())) {
+
+            if (runningDirection > 0) {
+                System.out.println("EXEC line " + actualStep.getIndex() + ":\t" + actualStep.getInstruction() + " "
+                        + actualStep.getValue() + "\t(" + accumulator + ")");
+            } else {
+                System.out.println("UNDO line " + actualStep.getIndex() + ":\t" + actualStep.getInstruction() + " "
+                        + actualStep.getValue() + "\t(" + accumulator + ")");
+            }
+
             switch (actualStep.getInstruction()) {
                 case ACC:
-                    accumulator += actualStep.getValue();
-                    nextInstructionIndex = actualStep.getIndex() + runningDirection;
+                    accumulator += actualStep.getValue() * runningDirection;
+                    nextInstructionIndex = actualStep.getIndex() + 1;
                     break;
                 case JMP:
-                    nextInstructionIndex = actualStep.getIndex() + actualStep.getValue() * runningDirection;
+                    nextInstructionIndex = actualStep.getIndex() + actualStep.getValue();
                     break;
                 case NOP:
                 default:
-                    nextInstructionIndex = actualStep.getIndex() + runningDirection;
+                    nextInstructionIndex = actualStep.getIndex() + 1;
                     break;
             }
+            actualStep.setExecuted(runningDirection > 0);
         } else {
+            System.out.println("-------------------------------");
+            System.out.println("LOOP line " + actualStep.getIndex() + ":\t" + actualStep.getInstruction() + " "
+                    + actualStep.getValue() + "\t(" + accumulator + ")");
+            System.out.println("-------------------------------");
             nextInstructionIndex = -1;
         }
-        actualStep.setExecuted(runningDirection > 0);
         return nextInstructionIndex;
     }
 
