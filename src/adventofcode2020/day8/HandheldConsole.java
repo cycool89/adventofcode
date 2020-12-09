@@ -12,6 +12,7 @@ class HandheldConsole {
     ProgramStep actualStep = null;
 
     Stack<ProgramStep> stackTrace = new Stack<>();
+    int changedStackIndex;
 
     public boolean tryToFix = false;
 
@@ -22,6 +23,7 @@ class HandheldConsole {
     public void start() {
         instructionIndex = 0;
         accumulator = 0;
+        changedStackIndex = Integer.MAX_VALUE;
 
         runningDirection = 1;
         executeProgram();
@@ -39,12 +41,35 @@ class HandheldConsole {
                 stackTrace.add(actualStep);
             } else {
                 actualStep = stackTrace.pop();
+                if (changedStackIndex > stackTrace.size() && toggleActualStep()) {
+                    changedStackIndex = stackTrace.size();
+                    runningDirection = 1;
+                } else if (changedStackIndex == stackTrace.size() && toggleActualStep()) {
+                    toggleActualStep();
+                }
                 instructionIndex = actualStep.getIndex();
             }
 
             instructionIndex = executeProgramStep();
         } while (runningDirection != 0 && hasNextStep());
         stop();
+    }
+
+    private boolean toggleActualStep() {
+        if (actualStep.getInstruction() == Instruction.JMP) {
+            actualStep.setInstruction(Instruction.NOP);
+            actualStep.setExecuted(!actualStep.hasBeenExecuted());
+            System.out.println("CHNG line " + actualStep.getIndex() + ":\tJMP to NOP" + actualStep.getValue() + "("
+                    + accumulator + ")");
+            return true;
+        } else if (actualStep.getInstruction() == Instruction.NOP) {
+            actualStep.setInstruction(Instruction.JMP);
+            actualStep.setExecuted(!actualStep.hasBeenExecuted());
+            System.out.println("CHNG line " + actualStep.getIndex() + ":\tNOP to JMP" + actualStep.getValue() + "("
+                    + accumulator + ")");
+            return true;
+        }
+        return false;
     }
 
     private boolean hasNextStep() {
