@@ -30,8 +30,8 @@ public class Day9First {
             int intervalUpperEnd = checkableNumberIndex - 1;
 
             boolean foundPair = false;
-            for (int i = intervalLowerEnd; i < intervalUpperEnd - 1 && !foundPair; i++) {
-                for (int j = i + 1; j < intervalUpperEnd && !foundPair; j++) {
+            for (int i = intervalLowerEnd; i < intervalUpperEnd && !foundPair; i++) {
+                for (int j = i + 1; j <= intervalUpperEnd && !foundPair; j++) {
                     if (input[i] != input[j] && (input[i] + input[j]) == input[checkableNumberIndex]) {
                         foundPair = true;
                     }
