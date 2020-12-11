@@ -3,8 +3,14 @@ year=$1
 day=$2
 subtask=$3
 
-echo "Starting program $year $day $subtask"
+echo ""
+echo "Building program $year $day $subtask..."
+file="src/adventofcode$year/$day/${day^}${subtask^}"
 
-echo "src/adventofcode$year/$day/$day$subtask.java"
+javac "${file}.java"
+
+echo "Starting program ..."
+echo ""
+java $file
 
 exit
