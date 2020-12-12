@@ -5,6 +5,16 @@ import java.util.List;
 import src.lib.FileHandler;
 
 public class Day11First {
+
+    enum FieldType {
+        FLOOR, SEAT
+    }
+    
+    static class Field {
+        public boolean occupied = false;
+        public FieldType type;
+    }
+
     public static void main(String[] args) {
         String[] inputPath = { "day11", "input.txt" };
         List<String> lines = FileHandler.readByLine(2020, inputPath);
