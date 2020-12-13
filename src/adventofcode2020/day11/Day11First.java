@@ -3,21 +3,23 @@ package src.adventofcode2020.day11;
 import java.util.List;
 
 import src.lib.FileHandler;
+import src.lib.RunningTime;
 
 public class Day11First {
 
-    enum FieldType {
-        FLOOR, SEAT
-    }
-    
-    static class Field {
-        public boolean occupied = false;
-        public FieldType type;
-    }
-
     public static void main(String[] args) {
-        String[] inputPath = { "day11", "input.txt" };
+        RunningTime.start();
+
+        String[] inputPath = { "day11", "sampleInput.txt" };
         List<String> lines = FileHandler.readByLine(2020, inputPath);
 
+        Grid grid = new Grid();
+        for (String line : lines) {
+            grid.addLine(line);
+        }
+
+
+
+        RunningTime.check();
     }
 }
