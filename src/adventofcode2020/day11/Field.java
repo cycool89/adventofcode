@@ -1,10 +1,14 @@
 package src.adventofcode2020.day11;
 
 class Field {
+    int x;
+    int y;
     boolean occupied = false;
     final FieldType type;
 
-    public Field(FieldType type) {
+    public Field(int x, int y, FieldType type) {
+        this.x = x;
+        this.y = y;
         this.type = type;
     }
 
@@ -18,5 +22,13 @@ class Field {
 
     public FieldType getType() {
         return this.type;
+    }
+
+    public int getX() {
+        return this.x;
+    }
+
+    public int getY() {
+        return this.y;
     }
 }

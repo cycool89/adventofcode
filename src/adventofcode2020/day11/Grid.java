@@ -19,20 +19,20 @@ class Grid {
     }
 
     public void addLine(String line) {
-        height++;
         width = line.length();
         for (int i = 0; i < line.length(); i++) {
             char field = line.charAt(i);
             switch (field) {
                 case 'L':
-                    fields.add(new Field(FieldType.SEAT));
+                    fields.add(new Field(height * i, i, FieldType.SEAT));
                     break;
                 case '.':
                 default:
-                    fields.add(new Field(FieldType.FLOOR));
+                    fields.add(new Field(height * i, i, FieldType.FLOOR));
                     break;
             }
         }
+        height++;
     }
 
     public Field getField(int i, int j) {
