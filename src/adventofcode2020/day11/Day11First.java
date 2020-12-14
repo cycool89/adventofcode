@@ -1,11 +1,19 @@
 package src.adventofcode2020.day11;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 import src.lib.FileHandler;
 import src.lib.RunningTime;
 
 public class Day11First {
+
+    static final List<Consumer<Grid>> rules = new ArrayList<>() {
+        {
+            add((Grid g) -> System.out.println("Hali from"));
+        }
+    };
 
     public static void main(String[] args) {
         RunningTime.start();
@@ -18,7 +26,12 @@ public class Day11First {
             grid.addLine(line);
         }
 
+        Grid nextGrid = null;
 
+        while (!grid.equals(nextGrid)) {
+            nextGrid = Grid.simulate(grid, rules);
+            System.out.println(nextGrid.toString());
+        }
 
         RunningTime.check();
     }

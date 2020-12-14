@@ -2,11 +2,21 @@ package src.adventofcode2020.day11;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 class Grid {
     int height;
     int width;
     List<Field> fields = new ArrayList<>();
+
+    public Grid() {
+    }
+
+    public Grid(String[] lines) {
+        for (String line : lines) {
+            addLine(line);
+        }
+    }
 
     public void addLine(String line) {
         height++;
@@ -25,11 +35,16 @@ class Grid {
         }
     }
 
-    public void simulate() {
-        String prevGrid = null;
-        while (!this.equalsToString(prevGrid)) {
-            prevGrid = this.toString();
-        }
+    public Field getField(int i, int j) {
+        return this.fields.get(i * height + j);
+    }
+
+    public static Grid simulate(Grid grid, List<Consumer<Grid>> rules) {
+        Grid nextGrid = new Grid(grid.toString().split("\n"));
+
+        rules.get(0).accept(grid);
+
+        return nextGrid;
     }
 
     public boolean equalsToString(String grid) {
