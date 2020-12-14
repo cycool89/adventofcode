@@ -24,11 +24,11 @@ class Grid {
             char field = line.charAt(i);
             switch (field) {
                 case 'L':
-                    fields.add(new Field(height * i, i, FieldType.SEAT));
+                    fields.add(new Field(i, i % width, FieldType.SEAT));
                     break;
                 case '.':
                 default:
-                    fields.add(new Field(height * i, i, FieldType.FLOOR));
+                    fields.add(new Field(i, i % width, FieldType.FLOOR));
                     break;
             }
         }
@@ -39,12 +39,20 @@ class Grid {
         return this.fields.get(i * height + j);
     }
 
-    public static Grid simulate(Grid grid, List<Consumer<Grid>> rules) {
+    public static Grid simulate(Grid grid, List<TwoParameterFunction<Grid, Field, Field>> rules) {
         Grid nextGrid = new Grid(grid.toString().split("\n"));
 
-        rules.get(0).accept(grid);
+        for (Field field : grid.fields) {
+            for (TwoParameterFunction<Grid, Field, Field> rule : rules) {
+                nextGrid.setField(rule.apply(grid, field));
+            }
+        }
 
         return nextGrid;
+    }
+
+    private void setField(Field nextField) {
+        fields.set(nextField.y * width + nextField.x, nextField);
     }
 
     public boolean equalsToString(String grid) {
@@ -55,6 +63,8 @@ class Grid {
     public boolean equals(Object obj) {
         if (obj == null)
             return false;
+        if (obj == this)
+            return true;
         if (obj instanceof Grid) {
             String objString = ((Grid) obj).toString();
             String thisString = this.toString();
