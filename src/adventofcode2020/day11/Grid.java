@@ -8,6 +8,22 @@ class Grid {
     int width;
     List<Field> fields = new ArrayList<>();
 
+    public static Grid simulate(Grid grid, List<TwoParameterFunction<Grid, Field, Field>> rules) {
+        Grid nextGrid = new Grid(grid.toString().split("\n"));
+
+        for (Field field : grid.fields) {
+            Field newField = new Field(field.getX(), field.getY(), field.getType());
+            newField.setOccupied(field.isOccupied());
+            for (TwoParameterFunction<Grid, Field, Field> rule : rules) {
+                Field f = rule.apply(grid, field);
+                newField = f == null ? newField : f;
+            }
+            nextGrid.setField(newField);
+        }
+
+        return nextGrid;
+    }
+
     public Grid() {
     }
 
@@ -71,20 +87,51 @@ class Grid {
         return count;
     }
 
-    public static Grid simulate(Grid grid, List<TwoParameterFunction<Grid, Field, Field>> rules) {
-        Grid nextGrid = new Grid(grid.toString().split("\n"));
+    public int visibleOccupied(Field f) {
+        int count = 0;
 
-        for (Field field : grid.fields) {
-            Field newField = new Field(field.getX(), field.getY(), field.getType());
-            newField.setOccupied(field.isOccupied());
-            for (TwoParameterFunction<Grid, Field, Field> rule : rules) {
-                Field f = rule.apply(grid, field);
-                newField = f == null ? newField : f;
+        for (int i = -1; i < 2; i++) {
+            for (int j = -1; j < 2; j++) {
+                if (i == 0 && j == 0) {
+                    continue;
+                }
+                try {
+                    Field checkableField = firstVisibleSeat(f, i, j);
+
+                    count += checkableField.getType().equals(FieldType.SEAT) && checkableField.isOccupied() ? 1 : 0;
+                } catch (IndexOutOfBoundsException e) {
+                    // There is no item on that index
+                }
             }
-            nextGrid.setField(newField);
         }
 
-        return nextGrid;
+        return count;
+    }
+
+    private Field firstVisibleSeat(Field f, int dirX, int dirY) {
+        Field firstVisible = null;
+
+        int x = dirX;
+        int y = dirY;
+        while (firstVisible == null
+                && (f.getX() + x >= 0 && f.getY() + y >= 0 && f.getX() + x < width && f.getY() + y < height)) {
+
+            try {
+                firstVisible = getField(f.getX() + x, f.getY() + y);
+                if (!firstVisible.getType().equals(FieldType.SEAT)) {
+                    firstVisible = null;
+                }
+            } catch (Exception e) {
+                // There is no seat on there
+            }
+            x += dirX;
+            y += dirY;
+        }
+
+        if (firstVisible == null) {
+            throw new IndexOutOfBoundsException();
+        }
+        return firstVisible;
     }
 
     private void setField(Field nextField) {
