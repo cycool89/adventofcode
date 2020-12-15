@@ -15,7 +15,7 @@ public class Day11First {
 
         setRules();
 
-        String[] inputPath = { "day11", "sampleInput.txt" };
+        String[] inputPath = { "day11", "input.txt" };
         List<String> lines = FileHandler.readByLine(2020, inputPath);
 
         Grid grid = new Grid();
@@ -29,19 +29,44 @@ public class Day11First {
         do {
             prevGrid = nextGrid == null ? grid : nextGrid;
             nextGrid = Grid.simulate(prevGrid, rules);
-            System.out.println("---------------------");
-            System.out.println(prevGrid.toString());
-            System.out.println("---------------------");
-            System.out.println(nextGrid.toString());
-            System.out.println("---------------------");
         } while (!prevGrid.equals(nextGrid));
+
+        System.out.println("There are " + prevGrid.seatsOccupied() + " occupied seats.");
 
         RunningTime.check();
     }
 
     private static void setRules() {
         rules.add((Grid g, Field f) -> {
-            return new Field(f.getX(), f.getY(), FieldType.FLOOR);
+            Field newField = new Field(f.getX(), f.getY(), f.getType());
+            switch (f.getType()) {
+                case SEAT:
+                    if (!f.isOccupied() && g.adjacentOccupied(f) == 0) {
+                        newField.setOccupied(true);
+                    } else {
+                        return null;
+                    }
+                    return newField;
+                case FLOOR:
+                default:
+                    return null;
+            }
+        });
+
+        rules.add((Grid g, Field f) -> {
+            Field newField = new Field(f.getX(), f.getY(), f.getType());
+            switch (f.getType()) {
+                case SEAT:
+                    if (f.isOccupied() && g.adjacentOccupied(f) >= 4) {
+                        newField.setOccupied(false);
+                    } else {
+                        return null;
+                    }
+                    return newField;
+                case FLOOR:
+                default:
+                    return null;
+            }
         });
     }
 }

@@ -2,7 +2,6 @@ package src.adventofcode2020.day11;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 
 class Grid {
     int height;
@@ -24,11 +23,11 @@ class Grid {
             char field = line.charAt(i);
             switch (field) {
                 case 'L':
-                    fields.add(new Field(i, i % width, FieldType.SEAT));
+                    fields.add(new Field(i, height, FieldType.SEAT));
                     break;
                 case '.':
                 default:
-                    fields.add(new Field(i, i % width, FieldType.FLOOR));
+                    fields.add(new Field(i, height, FieldType.FLOOR));
                     break;
             }
         }
@@ -36,16 +35,53 @@ class Grid {
     }
 
     public Field getField(int i, int j) {
-        return this.fields.get(i * height + j);
+        if (i >= 0 && j >= 0 && i < width && j < height) {
+            return this.fields.get(j * width + i);
+        }
+        throw new IndexOutOfBoundsException();
+    }
+
+    public int seatsOccupied() {
+        int count = 0;
+        for (Field f : fields) {
+            count += f.getType().equals(FieldType.SEAT) && f.isOccupied() ? 1 : 0;
+        }
+
+        return count;
+    }
+
+    public int adjacentOccupied(Field f) {
+        int count = 0;
+
+        for (int i = -1; i < 2; i++) {
+            for (int j = -1; j < 2; j++) {
+                if (i == 0 && j == 0) {
+                    continue;
+                }
+                try {
+                    Field checkableField = getField(f.getX() + i, f.getY() + j);
+
+                    count += checkableField.getType().equals(FieldType.SEAT) && checkableField.isOccupied() ? 1 : 0;
+                } catch (IndexOutOfBoundsException e) {
+                    // There is no item on that index
+                }
+            }
+        }
+
+        return count;
     }
 
     public static Grid simulate(Grid grid, List<TwoParameterFunction<Grid, Field, Field>> rules) {
         Grid nextGrid = new Grid(grid.toString().split("\n"));
 
         for (Field field : grid.fields) {
+            Field newField = new Field(field.getX(), field.getY(), field.getType());
+            newField.setOccupied(field.isOccupied());
             for (TwoParameterFunction<Grid, Field, Field> rule : rules) {
-                nextGrid.setField(rule.apply(grid, field));
+                Field f = rule.apply(grid, field);
+                newField = f == null ? newField : f;
             }
+            nextGrid.setField(newField);
         }
 
         return nextGrid;
