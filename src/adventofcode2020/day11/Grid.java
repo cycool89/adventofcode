@@ -167,7 +167,7 @@ class Grid {
         int w = 0;
         StringBuilder s = new StringBuilder();
         for (Field f : fields) {
-            s.append(f.getType() == FieldType.FLOOR ? "." : (f.isOccupied() ? "#" : "L"));
+            s.append(f.toString());
             w++;
             if (w % width == 0) {
                 s.append("\n");

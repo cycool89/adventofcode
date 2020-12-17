@@ -31,4 +31,9 @@ class Field {
     public int getY() {
         return this.y;
     }
+
+    @Override
+    public String toString() {
+        return getType() == FieldType.FLOOR ? "." : (isOccupied() ? "#" : "L");
+    }
 }
