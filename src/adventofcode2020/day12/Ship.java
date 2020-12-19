@@ -6,7 +6,10 @@ class Ship {
     int r = 90; // EAST
     Direction forwardDirection = Direction.E;
 
-    public void move(Direction direction, int unit) {
+    int wx = 10;
+    int wy = 1;
+
+    public void doEvasiveActionForPartOne(Direction direction, int unit) {
         switch (direction) {
             case N:
                 y += unit;
@@ -29,14 +32,54 @@ class Ship {
                 updateForwardDirection();
                 break;
             case F:
-                move(forwardDirection, unit);
+                doEvasiveActionForPartOne(forwardDirection, unit);
                 break;
         }
+    }
 
+    public void doEvasiveActionForPartTwo(Direction direction, int unit) {
+        switch (direction) {
+            case N:
+                wy += unit;
+                break;
+            case S:
+                wy -= unit;
+                break;
+            case E:
+                wx += unit;
+                break;
+            case W:
+                wx -= unit;
+                break;
+            case L:
+                rotateWaypoint(direction, unit);
+                break;
+            case R:
+                rotateWaypoint(direction, unit);
+                break;
+            case F:
+                x += unit * wx;
+                y += unit * wy;
+                break;
+        }
     }
 
     public int getManhattanDistance() {
         return Math.abs(x) + Math.abs(y);
+    }
+
+    private void rotateWaypoint(Direction direction, int unit) {
+        int degToDir = unit / 90;
+        if (direction == Direction.L) {
+            degToDir = -degToDir;
+        }
+        int modulus = (((degToDir % 4) + 4) % 4);
+
+        for (int i = 0; i < modulus; i++) {
+            int temp = wx;
+            wx = wy;
+            wy = -temp;
+        }
     }
 
     private void updateForwardDirection() {

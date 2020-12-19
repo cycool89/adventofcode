@@ -16,7 +16,7 @@ public class Day12First {
             Direction dir = InputConverter.getDirection(line);
             int unit = InputConverter.getUnit(line);
 
-            ship.move(dir, unit);
+            ship.doEvasiveActionForPartOne(dir, unit);
         }
 
         System.out.println("The ship's manhattan distance is " + ship.getManhattanDistance());
