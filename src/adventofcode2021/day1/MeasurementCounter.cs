@@ -5,20 +5,20 @@ namespace day1
 {
     public class MeasurementCounter
     {
-        private string[] lines;
+        private readonly string[] _lines;
 
         public MeasurementCounter(string fileName)
         {
-            lines = File.ReadAllLines(fileName);
+            _lines = File.ReadAllLines(fileName);
         }
 
         public int Count()
         {
             int countIncreasedMeasurements = 0;
-            for (var i = 1; i < lines.Length; i++)
+            for (var i = 1; i < _lines.Length; i++)
             {
-                var prevMeasurement = Convert.ToInt32(lines[i-1]);
-                var actMeasurement = Convert.ToInt32(lines[i]);
+                var prevMeasurement = Convert.ToInt32(_lines[i-1]);
+                var actMeasurement = Convert.ToInt32(_lines[i]);
                 if (actMeasurement > prevMeasurement)
                 {
                     countIncreasedMeasurements++;
