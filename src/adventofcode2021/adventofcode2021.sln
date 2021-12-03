@@ -1,0 +1,93 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day1", "day1\day1.csproj", "{A5A5EFC3-85E3-4833-BCF0-057DA74B2D0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day2", "day2\day2.csproj", "{252F0087-07D2-4700-95A2-7CE3BDF00828}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day3", "day3\day3.csproj", "{5FE698F8-B353-449C-A6A0-63987D8E4986}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day4", "day4\day4.csproj", "{070FEDC4-6A3C-426A-9620-A38984F17577}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day5", "day5\day5.csproj", "{070FEDC4-6A3C-426A-9620-A38984F17577}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day6", "day6\day6.csproj", "{070FEDC4-6A3C-426A-9620-A38984F17577}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day7", "day7\day7.csproj", "{070FEDC4-6A3C-426A-9620-A38984F17577}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day8", "day8\day8.csproj", "{070FEDC4-6A3C-426A-9620-A38984F17577}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day9", "day9\day9.csproj", "{070FEDC4-6A3C-426A-9620-A38984F17577}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day10", "day10\day10.csproj", "{070FEDC4-6A3C-426A-9620-A38984F17577}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day11", "day11\day11.csproj", "{070FEDC4-6A3C-426A-9620-A38984F17577}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day12", "day12\day12.csproj", "{070FEDC4-6A3C-426A-9620-A38984F17577}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day13", "day13\day13.csproj", "{070FEDC4-6A3C-426A-9620-A38984F17577}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day14", "day14\day14.csproj", "{070FEDC4-6A3C-426A-9620-A38984F17577}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day15", "day15\day15.csproj", "{070FEDC4-6A3C-426A-9620-A38984F17577}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day16", "day16\day16.csproj", "{070FEDC4-6A3C-426A-9620-A38984F17577}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day17", "day17\day17.csproj", "{070FEDC4-6A3C-426A-9620-A38984F17577}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day18", "day18\day18.csproj", "{070FEDC4-6A3C-426A-9620-A38984F17577}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day19", "day19\day19.csproj", "{070FEDC4-6A3C-426A-9620-A38984F17577}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day20", "day20\day20.csproj", "{070FEDC4-6A3C-426A-9620-A38984F17577}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day21", "day21\day21.csproj", "{070FEDC4-6A3C-426A-9620-A38984F17577}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day22", "day22\day22.csproj", "{070FEDC4-6A3C-426A-9620-A38984F17577}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day23", "day23\day23.csproj", "{070FEDC4-6A3C-426A-9620-A38984F17577}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day24", "day24\day24.csproj", "{070FEDC4-6A3C-426A-9620-A38984F17577}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "day25", "day25\day25.csproj", "{070FEDC4-6A3C-426A-9620-A38984F17577}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{7A2B286E-83C0-47FF-8E86-408D1BFD310A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lib", "lib\lib.csproj", "{1248A82C-57DF-4C65-8C30-3651721B2644}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A5A5EFC3-85E3-4833-BCF0-057DA74B2D0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5A5EFC3-85E3-4833-BCF0-057DA74B2D0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5A5EFC3-85E3-4833-BCF0-057DA74B2D0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5A5EFC3-85E3-4833-BCF0-057DA74B2D0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{252F0087-07D2-4700-95A2-7CE3BDF00828}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{252F0087-07D2-4700-95A2-7CE3BDF00828}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{252F0087-07D2-4700-95A2-7CE3BDF00828}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{252F0087-07D2-4700-95A2-7CE3BDF00828}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FE698F8-B353-449C-A6A0-63987D8E4986}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FE698F8-B353-449C-A6A0-63987D8E4986}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FE698F8-B353-449C-A6A0-63987D8E4986}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FE698F8-B353-449C-A6A0-63987D8E4986}.Release|Any CPU.Build.0 = Release|Any CPU
+		{070FEDC4-6A3C-426A-9620-A38984F17577}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{070FEDC4-6A3C-426A-9620-A38984F17577}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{070FEDC4-6A3C-426A-9620-A38984F17577}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{070FEDC4-6A3C-426A-9620-A38984F17577}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1248A82C-57DF-4C65-8C30-3651721B2644}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1248A82C-57DF-4C65-8C30-3651721B2644}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1248A82C-57DF-4C65-8C30-3651721B2644}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1248A82C-57DF-4C65-8C30-3651721B2644}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1248A82C-57DF-4C65-8C30-3651721B2644} = {7A2B286E-83C0-47FF-8E86-408D1BFD310A}
+	EndGlobalSection
+EndGlobal
