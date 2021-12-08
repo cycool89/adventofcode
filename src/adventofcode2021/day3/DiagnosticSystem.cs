@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using lib;
@@ -7,7 +8,6 @@ namespace day3
 {
     public class DiagnosticSystem
     {
-
         public long PowerConsumption
         {
             get
@@ -42,9 +42,18 @@ namespace day3
 
         private void Analyze()
         {
-            var diagnosis = Diagnosis();
-            CalculatePowerConsumptionBits(diagnosis);
+            CalculatePowerConsumptionBits();
             CalculateLifeSupportRatingBits();
+        }
+
+        private void CalculatePowerConsumptionBits()
+        {
+            var diagnosis = Diagnosis();
+            foreach (var diagnosisBit in diagnosis)
+            {
+                _gamma += diagnosisBit >= 0 ? "1" : "0";
+                _epsilon += diagnosisBit >= 0 ? "0" : "1";
+            }
         }
 
         private List<int> Diagnosis()
@@ -61,19 +70,34 @@ namespace day3
             return diagnosis;
         }
 
-        private void CalculatePowerConsumptionBits(List<int> diagnosis)
-        {
-            foreach (var diagnosisBit in diagnosis)
-            {
-                _gamma += diagnosisBit >= 0 ? "1" : "0";
-                _epsilon += diagnosisBit >= 0 ? "0" : "1";
-            }
-        }
-        
         private void CalculateLifeSupportRatingBits()
         {
-            List<string> ogRatings = new(_data.Length);
-            List<string> coRatings = new(_data.Length);
+            _oxygenGeneratorRating = SearchRating(
+                _data,
+                0,
+                (rawBitSummary) => rawBitSummary >= 0 ? '1' : '0'
+            );
+            _co2ScrubberRating = SearchRating(
+                _data,
+                0,
+                (rawBitSummary) => rawBitSummary <= 0 ? '0' : '1'
+            );
+        }
+
+        private string SearchRating(string[] source, int bitIndex, Func<int, char> mostCommonBit)
+        {
+            var rawBitSummary = BitSummary(source, bitIndex);
+            var mostCommonBitByBitIndexIndex = mostCommonBit(rawBitSummary);
+            string[] rating = source.Where(line => line[bitIndex] == mostCommonBitByBitIndexIndex).ToArray();
+
+            return rating.Length > 1 && bitIndex < source[0].Length
+                ? SearchRating(rating, bitIndex + 1, mostCommonBit)
+                : rating[0];
+        }
+
+        private int BitSummary(IEnumerable<string> input, int index)
+        {
+            return input.Sum(line => line[index] == '1' ? 1 : 0);
         }
     }
 }
