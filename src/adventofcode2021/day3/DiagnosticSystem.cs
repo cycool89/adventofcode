@@ -80,24 +80,24 @@ namespace day3
             _co2ScrubberRating = SearchRating(
                 _data,
                 0,
-                (rawBitSummary) => rawBitSummary <= 0 ? '0' : '1'
+                (rawBitSummary) => rawBitSummary >= 0 ? '0' : '1'
             );
         }
 
-        private string SearchRating(string[] source, int bitIndex, Func<int, char> mostCommonBit)
+        private static string SearchRating(string[] source, int bitIndex, Func<int, char> filterBit)
         {
             var rawBitSummary = BitSummary(source, bitIndex);
-            var mostCommonBitByBitIndexIndex = mostCommonBit(rawBitSummary);
+            var mostCommonBitByBitIndexIndex = filterBit(rawBitSummary);
             string[] rating = source.Where(line => line[bitIndex] == mostCommonBitByBitIndexIndex).ToArray();
 
             return rating.Length > 1 && bitIndex < source[0].Length
-                ? SearchRating(rating, bitIndex + 1, mostCommonBit)
+                ? SearchRating(rating, bitIndex + 1, filterBit)
                 : rating[0];
         }
 
-        private int BitSummary(IEnumerable<string> input, int index)
+        private static int BitSummary(IEnumerable<string> input, int index)
         {
-            return input.Sum(line => line[index] == '1' ? 1 : 0);
+            return input.Sum(line => line[index] == '1' ? 1 : -1);
         }
     }
 }
