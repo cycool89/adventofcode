@@ -2,7 +2,6 @@
 
 using System;
 using day3;
-using lib;
 
 DiagnosticSystem diagnosticSystemDemo = new("./input_1_demo.dat");
 DiagnosticSystem diagnosticSystem = new("./input_1.dat");
